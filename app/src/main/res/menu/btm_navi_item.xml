@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/find_res_btn"
+        android:enabled="true"
+        android:icon="@drawable/btn_navi_01"
+        android:title="맛집찾기"/>
+
+    <item
+        android:id="@+id/discount_res_btn"
+        android:enabled="true"
+        android:icon="@drawable/btn_navi_02"
+        android:title="맛집할인"/>
+
+    <item
+        android:enabled="true"
+        android:title=""/>
+
+    <item
+        android:id="@+id/notice_res_btn"
+        android:enabled="true"
+        android:icon="@drawable/btn_navi_04"
+        android:title="소식"/>
+
+    <item
+        android:id="@+id/mypage_res_btn"
+        android:enabled="true"
+        android:icon="@drawable/btn_navi_05"
+        android:title="내정보"/>
+
+
+</menu>
