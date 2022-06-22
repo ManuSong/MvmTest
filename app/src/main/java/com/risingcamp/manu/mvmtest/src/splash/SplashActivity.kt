@@ -19,12 +19,27 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding
         super.onCreate(savedInstanceState)
 
         handler.postDelayed({
-
-            val intent = Intent(this@SplashActivity, MainLoginActivity::class.java)
+            UserApiClient.instance.accessTokenInfo { tokenInfo, error ->
+                if (error != null) {
+                    val intent = Intent(this@SplashActivity, MainLoginActivity::class.java)
+                    Toast.makeText(this, "토큰 정보 보기 실패", Toast.LENGTH_SHORT).show()
+                    startActivity(intent)
+                }
+                else if (tokenInfo != null) {
+                    Toast.makeText(this, "토큰 정보 보기 성공", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    finish()
+                }
+            }
             startActivity(intent)
-
         },1500)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        finish()
     }
 
 

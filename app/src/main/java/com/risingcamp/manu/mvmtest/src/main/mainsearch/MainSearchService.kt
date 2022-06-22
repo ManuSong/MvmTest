@@ -2,6 +2,7 @@ package com.risingcamp.manu.mvmtest.src.main.mainsearch
 
 import android.app.Application
 import android.util.Log
+import com.risingcamp.manu.mvmtest.BuildConfig
 import com.risingcamp.manu.mvmtest.R
 import com.risingcamp.manu.mvmtest.config.ApplicationClass
 import com.risingcamp.manu.networkapp.retrofitdata.ResReviewData
@@ -16,7 +17,7 @@ class MainSearchService(val mainSearchFragmentInterface: MainSearchFragmentInter
 
     fun getRestaurant(){
         val mainSearchRetrofitInterface = ApplicationClass.sRetrofit.create(MainSearchRetrofitInterface::class.java)
-        mainSearchRetrofitInterface.getRestaurant(1,61, "oT9zyC/LGfZfmiomD0COKOzcKAEp6tXQC3V6dRg2QVd6JiW3QxSq7xzuAQiKSxvO6TrD52RTSKlEHEAcg64hpw==").
+        mainSearchRetrofitInterface.getRestaurant(1,61, BuildConfig.API_KEY).
         enqueue(object : Callback<delicous_restrant> {
             override fun onResponse(
                 call: Call<delicous_restrant>,
@@ -37,7 +38,7 @@ class MainSearchService(val mainSearchFragmentInterface: MainSearchFragmentInter
 
     fun getReview() {
         val mainSearchRetrofitInterface = ApplicationClass.sRetrofit.create(MainSearchRetrofitInterface::class.java)
-        mainSearchRetrofitInterface.getResImgName(1, 61, "${R.string.API_KEY}")
+        mainSearchRetrofitInterface.getResImgName(1, 61, BuildConfig.API_KEY)
             .enqueue(object : Callback<ResReviewData>{
                 override fun onResponse(
                     call: Call<ResReviewData>,
@@ -45,7 +46,6 @@ class MainSearchService(val mainSearchFragmentInterface: MainSearchFragmentInter
                 ) {
                     if (response.isSuccessful){
                         mainSearchFragmentInterface.onGetReviewSuccess(response.body() as ResReviewData)
-                        Log.d("testt", "$response")
                     }
 
                 }

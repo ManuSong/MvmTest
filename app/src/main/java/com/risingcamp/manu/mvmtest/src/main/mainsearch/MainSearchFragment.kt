@@ -1,11 +1,8 @@
 package com.risingcamp.manu.mvmtest.src.main.mainsearch
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.risingcamp.manu.mvmtest.R
@@ -17,6 +14,7 @@ import com.risingcamp.manu.mvmtest.src.main.mainsearch.adapter.ReviewCheckAdapte
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.model.ImageData
 import com.risingcamp.manu.networkapp.retrofitdata.ResReviewData
 import com.risingcamp.manu.networkapp.retrofitdata.delicous_restrant
+import net.daum.mf.map.api.MapView
 
 class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMainsearchBinding::bind, R.layout.fragment_mainsearch), MainSearchFragmentInterface {
 
@@ -51,18 +49,21 @@ class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMains
 
         MainSearchService(this).getRestaurant()
 
+        MainSearchService(this).getReview()
+
+
+
+
 
     }
 
 
+
     override fun onGetRestaurantSuccess(response: delicous_restrant) {
 
-        if (response != null) {
         mainSearchResAdapter = MainSearchResAdapter(response.data)
-        binding.noticeRecycler.apply {
-            adapter = mainSearchResAdapter
-        }
-        }
+        binding.noticeRecycler.adapter = mainSearchResAdapter
+
     }
 
     override fun onGetRestaurantFail(message: String) {
@@ -70,13 +71,13 @@ class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMains
     }
 
     override fun onGetReviewSuccess(response: ResReviewData) {
+
+
         if (response != null){
             reviewCheckAdapter = ReviewCheckAdapter(response.data)
-            Log.d("testt", "${response.data}")
-            binding.reviewRecycler.apply {
-                adapter = reviewCheckAdapter
-                layoutManager = GridLayoutManager(context, 2)
-            }
+            binding.reviewRecycler.adapter = reviewCheckAdapter
+            binding.reviewRecycler.layoutManager = GridLayoutManager(context, 2)
+
         }
     }
 

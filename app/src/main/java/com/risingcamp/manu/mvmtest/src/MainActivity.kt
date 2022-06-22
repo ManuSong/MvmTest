@@ -1,7 +1,8 @@
 package com.risingcamp.manu.mvmtest.src
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.risingcamp.manu.mvmtest.R
 import com.risingcamp.manu.mvmtest.config.BaseActivity
 import com.risingcamp.manu.mvmtest.databinding.ActivityMainBinding
@@ -23,6 +24,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         super.onCreate(savedInstanceState)
 
 
+
         initNavigationBar()
 
 
@@ -35,6 +37,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     R.id.find_res_btn -> {
                         changeFragment(fragmentOne)
 
+
                     }
                     R.id.discount_res_btn -> {
                         changeFragment(fragmentTwo)
@@ -44,15 +47,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                     R.id.notice_res_btn -> {
                         changeFragment(fragmentFour)
 
+
                     }
 
                     R.id.mypage_res_btn -> {
                         changeFragment(fragmentFive)
 
+
                     }
 
                     R.id.btm_plus_btn -> {
                         changeFragment(fragmentThree)
+
 
                     }
 

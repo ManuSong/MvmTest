@@ -3,6 +3,8 @@ package com.risingcamp.manu.mvmtest.config
 import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
+import com.kakao.sdk.common.KakaoSdk
+import com.risingcamp.manu.mvmtest.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -37,6 +39,9 @@ class ApplicationClass : Application() {
             applicationContext.getSharedPreferences("SOFTSQUARED_TEMPLATE_APP", MODE_PRIVATE)
         // 레트로핏 인스턴스 생성
         initRetrofitInstance()
+
+        KakaoSdk.init(this, BuildConfig.KAKAO_API_KEY)
+
 
     }
 
