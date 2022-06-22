@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NetWorkApp</string>
+    <string name="app_name">MangoPlate</string>
     <string name="address_name"><u>용산/숙대</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

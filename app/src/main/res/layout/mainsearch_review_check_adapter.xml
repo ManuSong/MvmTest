@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="190dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/food_img"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/res_img_test"
+        android:scaleType="fitXY"
+        android:background="@drawable/main_screen_img_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/address_res"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="용산/숙대"
+        android:textSize="10dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintTop_toBottomOf="@+id/food_img"
+        app:layout_constraintStart_toStartOf="@+id/food_img"
+        android:layout_marginTop="5dp"/>
+
+    <ImageView
+        android:id="@+id/record_my_star"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/main_frg_img_star"
+        app:layout_constraintEnd_toEndOf="@+id/food_img"
+        app:layout_constraintTop_toTopOf="@+id/food_img"
+        android:layout_marginTop="13.5dp"
+        android:layout_marginRight="13.5dp"/>
+
+    <TextView
+        android:id="@+id/res_name_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1."
+        android:textStyle="bold"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/address_res"
+        app:layout_constraintStart_toStartOf="@+id/address_res" />
+
+    <TextView
+        android:id="@+id/res_name_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="야스노야지로"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/address_res"
+        app:layout_constraintStart_toEndOf="@+id/res_name_position"
+        android:layout_marginLeft="5dp"/>
+
+    <TextView
+        android:id="@+id/kind_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일식 / 기타 일식"
+        android:textSize="10dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintTop_toBottomOf="@+id/res_name_position"
+        app:layout_constraintStart_toStartOf="@+id/food_img"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/review_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.7"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="2dp"
+        android:textColor="@color/manggoplate_color"
+        app:layout_constraintTop_toBottomOf="@+id/kind_item"
+        app:layout_constraintStart_toStartOf="@+id/food_img" />
+
+    <TextView
+        android:id="@+id/review_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(리뷰 66)"
+        android:textSize="10dp"
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintBottom_toBottomOf="@+id/review_score"
+        app:layout_constraintStart_toEndOf="@+id/review_score"
+        android:layout_marginBottom="2dp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
