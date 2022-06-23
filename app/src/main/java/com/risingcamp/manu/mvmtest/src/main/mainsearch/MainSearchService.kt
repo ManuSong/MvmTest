@@ -17,7 +17,7 @@ class MainSearchService(val mainSearchFragmentInterface: MainSearchFragmentInter
 
     fun getRestaurant(){
         val mainSearchRetrofitInterface = ApplicationClass.sRetrofit.create(MainSearchRetrofitInterface::class.java)
-        mainSearchRetrofitInterface.getRestaurant(1,61, BuildConfig.API_KEY).
+        mainSearchRetrofitInterface.getRestaurant(1,10, BuildConfig.API_KEY).
         enqueue(object : Callback<delicous_restrant> {
             override fun onResponse(
                 call: Call<delicous_restrant>,
@@ -38,7 +38,7 @@ class MainSearchService(val mainSearchFragmentInterface: MainSearchFragmentInter
 
     fun getReview() {
         val mainSearchRetrofitInterface = ApplicationClass.sRetrofit.create(MainSearchRetrofitInterface::class.java)
-        mainSearchRetrofitInterface.getResImgName(1, 61, BuildConfig.API_KEY)
+        mainSearchRetrofitInterface.getResImgName(1, 10, BuildConfig.API_KEY)
             .enqueue(object : Callback<ResReviewData>{
                 override fun onResponse(
                     call: Call<ResReviewData>,
