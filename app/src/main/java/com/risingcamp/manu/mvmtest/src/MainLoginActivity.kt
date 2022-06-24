@@ -106,5 +106,4 @@ class MainLoginActivity : BaseActivity<ActivityMainLoginBinding>(ActivityMainLog
             binding.moveTest.translationX = 0f
         }
     }
-
 }

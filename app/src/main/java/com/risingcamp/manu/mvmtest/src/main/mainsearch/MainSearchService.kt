@@ -25,6 +25,7 @@ class MainSearchService(val mainSearchFragmentInterface: MainSearchFragmentInter
             ) {
                 if (response.isSuccessful){
                     mainSearchFragmentInterface.onGetRestaurantSuccess(response.body() as delicous_restrant)
+
                 }
 
             }

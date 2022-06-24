@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.risingcamp.manu.mvmtest.R
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.MainSearchService
 import com.risingcamp.manu.networkapp.retrofitdata.Data
 
-class MainSearchResAdapter(var noticeResdataList : List<Data>) : RecyclerView.Adapter<MainSearchResAdapter.FirstAdapterView>() {
+class MainSearchResAdapter(var noticeResdataList : List<Data>) : PagingDataAdapter<Data ,MainSearchResAdapter.FirstAdapterView>(
+    diffCallback) {
 
 
     inner class FirstAdapterView(parent: ViewGroup) : RecyclerView.ViewHolder(
@@ -64,5 +67,18 @@ class MainSearchResAdapter(var noticeResdataList : List<Data>) : RecyclerView.Ad
 
     override fun getItemCount(): Int {
         return noticeResdataList.size
+    }
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Data>(){
+            override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+                return oldItem == newItem
+            }
+
+        }
     }
 }

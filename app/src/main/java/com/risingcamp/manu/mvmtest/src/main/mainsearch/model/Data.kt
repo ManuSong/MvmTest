@@ -15,7 +15,7 @@ data class Data(
     val 테마: String
 
 ){
-    constructor(사장님이자랑하는내가게한마디: String, 업소명: String, 종류: Int)
-            : this( "",사장님이자랑하는내가게한마디,업소명,"","", 종류, "", "","", "")
+//    constructor(사장님이자랑하는내가게한마디: String, 업소명: String, 종류: Int)
+//            : this( "",사장님이자랑하는내가게한마디,업소명,"","", 종류, "", "","", "")
 
 }

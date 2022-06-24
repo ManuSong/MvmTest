@@ -74,4 +74,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             .replace(R.id.frame_container, fragment)
             .commit()
     }
+
 }

@@ -2,6 +2,8 @@ package com.risingcamp.manu.mvmtest.src.main.mainsearch
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
@@ -16,11 +18,11 @@ import com.risingcamp.manu.mvmtest.databinding.FragmentMainsearchBinding
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.adapter.MainBannerAdapter
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.adapter.MainSearchResAdapter
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.adapter.ReviewCheckAdapter
-import com.risingcamp.manu.mvmtest.src.main.mainsearch.adapter.infinitescroll.EndlessRecyclerViewScrollListener
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.kakaomap.KakaoMapActivity
 import com.risingcamp.manu.mvmtest.src.main.mainsearch.model.ImageData
 import com.risingcamp.manu.networkapp.retrofitdata.ResReviewData
 import com.risingcamp.manu.networkapp.retrofitdata.delicous_restrant
+import okhttp3.internal.notifyAll
 
 class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMainsearchBinding::bind, R.layout.fragment_mainsearch), MainSearchFragmentInterface {
 
@@ -28,7 +30,8 @@ class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMains
     private lateinit var mainBannerAdapter: MainBannerAdapter
     private lateinit var mainSearchResAdapter: MainSearchResAdapter
     private lateinit var reviewCheckAdapter: ReviewCheckAdapter
-
+    private var perPage = 10
+    private val handler = Handler(Looper.getMainLooper())
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,22 +75,49 @@ class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMains
             }
         }
 
+        Thread(){
+        handler.post {
+
+            val noticeRecycler = binding.noticeRecycler
+
+            noticeRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(noticeRecycler, dx, dy)
+
+                    val lastVisibleItemPosition = (recyclerView.layoutManager as LinearLayoutManager)!!.findLastCompletelyVisibleItemPosition()
+                    val itemTotalCount = perPage - 1
+
+                    if (lastVisibleItemPosition == itemTotalCount) {
+                        perPage += 10
+                        MainSearchService(this@MainSearchFragment).getRestaurant()
+                        Log.d("testt", "$itemTotalCount")
+
+                    }
 
 
+                }
+            }) }
+
+
+        }.start()
 
     }
 
 
 
     override fun onGetRestaurantSuccess(response: delicous_restrant) {
-
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         mainSearchResAdapter = MainSearchResAdapter(response.data)
         binding.noticeRecycler.apply {
             adapter = mainSearchResAdapter
-            val linearLayoutManager = LinearLayoutManager(context)
+            layoutManager = linearLayoutManager
            // 무한 스크롤 연결하기 전~!
+
+
         }
+
+
 
     }
 
@@ -109,4 +139,13 @@ class MainSearchFragment : BaseFragment<FragmentMainsearchBinding>(FragmentMains
     override fun onGetReviewFail(message: String) {
         showCustomToast("오류 : ${message}")
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        AdImageList.clear()
+    }
+
+
+
+
 }
